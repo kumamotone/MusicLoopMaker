@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicLoopMaker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>MusicLoopMaker</h1>
+    
+    <div id="dropZone">WAVファイルをここにドラッグ＆ドロップしてください</div>
+    
+    <div id="waveform-container">
+      <div id="wave-timeline"></div>
+      <div id="waveform"></div>
+      <div class="playback-controls">
+        <button id="playPauseButton" class="btn btn-icon">
+          <i class="material-icons">play_arrow</i>
+        </button>
+        <button id="stopButton" class="btn btn-icon">
+          <i class="material-icons">stop</i>
+        </button>
+        <div class="volume-control">
+          <input type="range" id="volumeSlider" min="0" max="100" value="50">
+          <span id="volumeDisplay">50%</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <div class="control-row">
+        <div class="control-group">
+          <label for="repeatCount">繰り返し回数:</label>
+          <input type="number" id="repeatCount" min="1" value="2">
+          <span id="totalDuration"></span>
+        </div>
+        
+        <div class="control-group">
+          <label for="outputFormat">出力形式:</label>
+          <select id="outputFormat">
+            <option value="wav">WAV</option>
+            <option value="mp3">MP3</option>
+          </select>
+        </div>
+        
+        <div id="mp3Settings" style="display: none;">
+          <div class="control-group">
+            <label for="encodeSetting">MP3エンコード設定:</label>
+            <select id="encodeSetting">
+              <option value="-V0">-V0 (最高品質)</option>
+              <option value="-V2" selected>-V2 (高品質)</option>
+              <option value="-V4">-V4 (標準品質)</option>
+              <option value="-V6">-V6 (低品質)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="control-row output-folder">
+        <label for="outputFolder">出力先フォルダ:</label>
+        <div class="folder-input-container">
+          <input type="text" id="outputFolder" readonly>
+          <button id="selectFolderButton" class="btn btn-icon" title="フォルダを選択">
+            <i class="material-icons">folder_open</i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="control-row">
+        <button id="runButton" class="btn btn-primary">実行</button>
+      </div>
+    </div>
+    
+    <div id="output"></div>
+    
+    <div class="instructions">
+      <h2>使い方</h2>
+      <ol>
+        <li>WAVファイルをドラッグ＆ドロップエリアにドロップしま���。</li>
+        <li>繰り返し回数を設定します。</li>
+        <li>出力形式（WAVまたはMP3）を選択します。</li>
+        <li>MP3を選択した場合は、エンコード設定を選択します。</li>
+        <li>「実行」ボタンをクリックして処理を開始します。</li>
+      </ol>
+      <p>注意: 処理には時間がかかる場合があります。完了するまでお待ちください。</p>
+    </div>
+  </div>
+  <script type="module" src="./renderer.js"></script>
+</body>
+</html>
